@@ -15,9 +15,10 @@ import {
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
-import Login from "./AppParts/components/Login"
+import SignUp from "./AppParts/components/SignUp"
 import MapWithDeals from "./AppParts/components/MapWithDeals"
-
+import Login from "./AppParts/components/Login"
+import Home from "./AppParts/components/Home"
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -27,8 +28,10 @@ const instructions = Platform.select({
 });
 
 const NavApp = StackNavigator({
-  Login: { screen: Login},
-  MapWithDeals: { screen: MapWithDeals}
+  Home: { screen: Home },
+  Login: { screen: Login },
+  SignUp: { screen: SignUp },
+  MapWithDeals: { screen: MapWithDeals }
 })
 export default class App extends Component<{}> {
 
@@ -39,11 +42,6 @@ export default class App extends Component<{}> {
   }
 }
 
-{/* <View style={styles.container}>
-  <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-  <Login/>
-  </TouchableWithoutFeedback>
-</View> */}
 
 const styles = StyleSheet.create({
   container: {
