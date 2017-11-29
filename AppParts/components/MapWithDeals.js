@@ -10,7 +10,7 @@ import {
   Dimensions
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import { Button, Text } from 'react-native-elements';
+import { Button, Text, Icon } from 'react-native-elements';
 import MapView from 'react-native-maps';
 import TokenManager from "../services/TokenManager"
 import DealMarker from "./DealMarker"
@@ -82,7 +82,6 @@ class MapWithDeals extends React.Component{
     this.watchID = navigator.geolocation.watchPosition((position) => {
       // TokenManager.getJWT()
       console.log("tester")
-      console.log(this.state.deals)
       var lat = parseFloat(position.coords.latitude)
       var long = parseFloat(position.coords.longitude)
 
@@ -109,24 +108,6 @@ class MapWithDeals extends React.Component{
     navigator.geolocation.clearWatch(this.watchID)
   }
 
-  // dealMarkers = () => {
-  //   this.state.deals.map((deal)=> {
-  //     return <MapView.Marker
-  //       coordinate={{latitude: deal.lat, longitude: deal.lng}}
-  //       image="../../MarketerFinal.png"
-  //       >
-  //     </MapView.Marker>
-  //   })
-  // }
-
-  // <MapView.Circle
-  //   center={{latitude: deal.lat, longitude: deal.lng}}
-  //   radius={750}
-  //   fillColor="rgba(28, 181, 172, 0.2)"
-  //   strokeColor="rgba(28, 181, 172, 0.3)"
-  //   key={i}
-  //   >
-  // </MapView.Circle>
 
   render(){
     const { navigate } = this.props.navigation
@@ -136,17 +117,18 @@ class MapWithDeals extends React.Component{
         style={styles.map}
         region={this.state.initialPosition}
       >
+        {this.state.deals.length > 0 ?
+          this.state.deals.map((deal, i)=> {
+          return <DealMarker navigation={this.props.navigation} deal={deal} key={i} />
+        })
+          : null}
         <MapView.Marker
           coordinate={this.state.markerPositiion}>
           <View style={styles.radius}>
               <View style={styles.marker}/>
           </View>
         </MapView.Marker>
-        {this.state.deals.length > 0 ?
-          this.state.deals.map((deal, i)=> {
-          return <DealMarker deal={deal} key={i} />
-        })
-          : null}
+
       </MapView>
     </View>
     )
@@ -159,8 +141,13 @@ const styles = StyleSheet.create({
      left: 0,
      right: 0,
      bottom: 0,
-     justifyContent: 'flex-end',
-     alignItems: 'center',
+     zIndex: 10,
+   },
+   icon: {
+    position: 'relative',
+    zIndex: 199,
+    top: 20,
+    right: 10,
    },
   map: {
     flex: 1,
@@ -169,6 +156,7 @@ const styles = StyleSheet.create({
     top: 0,
     bottom: 0,
     position: 'absolute',
+    zIndex: -1,
   },
   radius: {
     height: 50,
@@ -180,6 +168,7 @@ const styles = StyleSheet.create({
     borderColor:  'rgba(0, 122, 255, 0.3)',
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 10,
   },
   marker: {
     height: 20,
@@ -189,6 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: 20 / 2,
     overflow: 'hidden',
     backgroundColor: '#007AFF',
+    zIndex: 10,
   },
 })
 

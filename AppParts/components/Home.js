@@ -4,7 +4,8 @@ import {
   StyleSheet,
   View,
   Navigator,
-  ImageBackground
+  ImageBackground,
+  Image
 } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 
@@ -31,11 +32,12 @@ class Home extends React.Component{
       <View style={styles.Box}/>
       <View style={styles.container}>
         <View style={styles.head}>
-        <Text h1 style={styles.header}>Welcome</Text>
+
+        <Image source={require('../../Logomakr_2CXsbD.png')} style={styles.header} />
       </View>
-        <Button textStyle={{fontWeight: 'bold'}} onPress={this.loginPress} title="Login"
+        <Button style={{bottom: 10}} textStyle={{fontWeight: 'bold', fontFamily: "Bodoni 72", fontSize: 18}} onPress={this.loginPress} title="Login"
         backgroundColor='teal'/>
-        <Button textStyle={{fontWeight: 'bold'}} onPress={this.signUpPress}
+        <Button textStyle={{fontWeight: 'bold', fontFamily: "Bodoni 72", fontSize: 18}} onPress={this.signUpPress}
           title="Sign Up"
           backgroundColor='red'/>
       </View>
@@ -69,7 +71,9 @@ const styles = StyleSheet.create({
   header: {
     justifyContent: 'center',
     marginBottom: 20,
-    backgroundColor: 'transparent',
+    width: 250,
+    height: 150,
+    top: "-10%",
   },
   box: {
     backgroundColor:'rgba(255, 255, 255, 0.2)',

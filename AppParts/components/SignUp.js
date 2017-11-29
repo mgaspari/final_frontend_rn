@@ -44,7 +44,8 @@ var options = {
 class SignUp extends React.Component {
 
   static navigationOptions = {
-    title: "SignUp"
+    title: "SignUp",
+    header: null
   }
 
   handleSubmit = () => {
@@ -55,6 +56,9 @@ class SignUp extends React.Component {
     navigate('MapWithDeals')
   }
 
+  handleSignin = (event) => {
+    this.props.navigation.navigate("Login")
+  }
 
   render(){
 
@@ -66,8 +70,14 @@ class SignUp extends React.Component {
        options={options}/>
         <Button
           title="Sign Up!"
-          backgroundColor='teal'
+          backgroundColor='red'
           onPress={this.handleSubmit}
+        />
+        <Button
+          title="   Login   "
+          backgroundColor='teal'
+          onPress={this.handleSignin}
+          style={styles.signin}
         />
       </KeyboardAvoidingView>
     )
@@ -81,6 +91,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 5,
     backgroundColor: '#ffffff',
+  },
+  signin: {
+    top: 10,
   },
   head: {
     justifyContent: 'center',

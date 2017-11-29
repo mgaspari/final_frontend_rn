@@ -19,6 +19,7 @@ import SignUp from "./AppParts/components/SignUp"
 import MapWithDeals from "./AppParts/components/MapWithDeals"
 import Login from "./AppParts/components/Login"
 import Home from "./AppParts/components/Home"
+import DealShow from "./AppParts/components/DealShow"
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -31,7 +32,8 @@ const NavApp = StackNavigator({
   Home: { screen: Home },
   Login: { screen: Login },
   SignUp: { screen: SignUp },
-  MapWithDeals: { screen: MapWithDeals }
+  MapWithDeals: { screen: MapWithDeals },
+  DealShow: { screen: DealShow}
 })
 export default class App extends Component<{}> {
 
