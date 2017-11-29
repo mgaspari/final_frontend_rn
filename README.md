@@ -4,9 +4,9 @@ A web and mobile app that allows businesses to post temporary deals to drive foo
 
 This is the mobile portion of a cross platform deal app.
 
-The web portal can be found <a href="https://github.com/mgaspari/final_frontend">here</a>.
+The web portal can be found <a href="https://github.com/mgaspari/final_frontend">here</a>
 
-The back end can be cound <a href="https://github.com/mgaspari/final_backend">here</a>.
+The back end can be cound <a href="https://github.com/mgaspari/final_backend">here</a>
 <br/>
 
 ## Users Can Signup
