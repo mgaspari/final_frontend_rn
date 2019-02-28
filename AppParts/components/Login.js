@@ -21,28 +21,23 @@ const User = t.struct({
   password: t.String,
 })
 
-
-
 class Login extends React.Component{
   static navigationOptions = {
     title: "Login",
     header: null
   }
 
-
   handleSubmit = (event) => {
     event.preventDefault()
     const { navigate } = this.props.navigation
     const value = this._form.getValue();
     TokenManager.setJWT(value)
-    console.log('value: ', value);
     navigate("MapWithDeals")
   }
 
   handleSignUp = (event) => {
     this.props.navigation.navigate("SignUp")
   }
-
 
   render(){
     var options = {
@@ -56,6 +51,7 @@ class Login extends React.Component{
         }
       }
     };
+
     return(
       <ImageBackground source={require("../../doodles.png")} style={styles.backgroundImage}>
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
@@ -116,7 +112,5 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontFamily: "Bodoni 72",
     fontSize: 50,
-
-  },
-
+  }
 })

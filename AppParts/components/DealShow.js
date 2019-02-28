@@ -11,7 +11,7 @@ import DealMarker from "./DealMarker"
 
 export default class DealShow extends Component{
   render(){
-    let deal = this.props.navigation.state.params.deal
+    const deal = this.props.navigation.state.params.deal
     return(
       <Tile
         imageSrc={{uri: deal.img_link, top: 15}}

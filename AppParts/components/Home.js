@@ -16,7 +16,6 @@ class Home extends React.Component{
   }
 
   loginPress = (event) => {
-    console.log("login")
     const { navigate } = this.props.navigation
     navigate('Login')
   }
@@ -32,7 +31,6 @@ class Home extends React.Component{
       <View style={styles.Box}/>
       <View style={styles.container}>
         <View style={styles.head}>
-
         <Image source={require('../../Logomakr_2CXsbD.png')} style={styles.header} />
       </View>
         <Button style={{bottom: 10}} textStyle={{fontWeight: 'bold', fontFamily: "Bodoni 72", fontSize: 18}} onPress={this.loginPress} title="Login"
@@ -45,11 +43,6 @@ class Home extends React.Component{
     )
   }
 }
-
-{/* <Button onClick={this.loginPress} title="Login"
-backgroundColor='teal'/> <Button onClick={this.signUpPress}
-  title="Sign Up"
-  backgroundColor='red'/> */}
 
 export default Home
 
@@ -78,5 +71,4 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor:'rgba(255, 255, 255, 0.2)',
   }
-
 })

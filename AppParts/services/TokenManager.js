@@ -13,8 +13,7 @@ export default class TokenManager {
         'accept': 'application/json'
       },
       body: JSON.stringify(loginParams)
-    }).then(res => res.json()).then(json =>{
-      console.log(json.jwt)
+    }).then(res => res.json()).then(json => {
       AsyncStorage.setItem('jwt', json.jwt)
      })
   }
@@ -22,10 +21,9 @@ export default class TokenManager {
   static getJWT = async () => {
     try {
       let token = await AsyncStorage.getItem('jwt')
-      console.log(token)
       return token
     } catch(error){
-      console.log("Not yet")
+      console.log(error)
     }
   }
 }

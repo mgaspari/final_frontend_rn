@@ -16,8 +16,6 @@ import TokenManager from "../services/TokenManager"
 import DealMarker from "./DealMarker"
 LATITUDE_DELTA = 0.0922
 LONGITUDE_DELTA = 0.0421
-// LATITUDE_DELTA + (width / height)
-
 
 class MapWithDeals extends React.Component{
   static navigationOptions = {
@@ -49,7 +47,7 @@ class MapWithDeals extends React.Component{
     }).then(res => res.json()).then(json => {
       this.setState({
         deals: json
-      }, console.log(this.state.deals))
+      })
     })
   }
 
@@ -68,20 +66,15 @@ class MapWithDeals extends React.Component{
       }
 
       this.setState({
+        markerPositiion: initialRegion,
         initialPosition: initialRegion
       })
-      this.setState({
-        markerPositiion: initialRegion
-      })
-
-
     },
     (error) => alert(JSON.stringify(error)),
     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
 
     this.watchID = navigator.geolocation.watchPosition((position) => {
-      // TokenManager.getJWT()
-      console.log("tester")
+
       var lat = parseFloat(position.coords.latitude)
       var long = parseFloat(position.coords.longitude)
 
@@ -93,9 +86,7 @@ class MapWithDeals extends React.Component{
       }
 
       this.setState({
-        initialPosition: initialRegion
-      })
-      this.setState({
+        initialPosition: initialRegion,
         markerPositiion: initialRegion
       })
     })
@@ -103,32 +94,34 @@ class MapWithDeals extends React.Component{
 
   }
 
-
   componentWillUnmount(){
     navigator.geolocation.clearWatch(this.watchID)
   }
 
-
   render(){
-    const { navigate } = this.props.navigation
+    const { navigate } = this.props.navigation;
+    const dealMarkers =
+      this.state.deals.length > 0
+      ? this.state.deals.map((deal, i)=> {
+          return(
+            <DealMarker navigation={this.props.navigation} deal={deal} key={i} />
+          );
+        })
+      : null;
+
     return(
       <View style={styles.container}>
       <MapView
         style={styles.map}
         region={this.state.initialPosition}
       >
-        {this.state.deals.length > 0 ?
-          this.state.deals.map((deal, i)=> {
-          return <DealMarker navigation={this.props.navigation} deal={deal} key={i} />
-        })
-          : null}
+        {dealMarkers}
         <MapView.Marker
           coordinate={this.state.markerPositiion}>
           <View style={styles.radius}>
               <View style={styles.marker}/>
           </View>
         </MapView.Marker>
-
       </MapView>
     </View>
     )
@@ -179,7 +172,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: '#007AFF',
     zIndex: 10,
-  },
+  }
 })
 
 export default MapWithDeals

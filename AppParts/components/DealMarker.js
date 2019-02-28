@@ -5,7 +5,6 @@ import MapView from "react-native-maps";
 
 export default class DealMarker extends Component {
   markerPress = event => {
-    console.log(event.nativeEvent);
     this.props.navigation.navigate("DealShow", {deal: this.props.deal});
   };
   render() {
