@@ -6,7 +6,7 @@ This is the mobile portion of a cross platform deal app.
 
 The web portal can be found <a href="https://github.com/mgaspari/final_frontend">here</a>
 
-The back end can be cound <a href="https://github.com/mgaspari/final_backend">here</a>
+The back end can be found <a href="https://github.com/mgaspari/final_backend">here</a>
 <br/>
 
 ## Users Can Signup
